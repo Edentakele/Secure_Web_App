@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Dashboard</h2>
+  <a href="{% url 'submit_feedback' %}">Submit Feedback</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Complaint ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Comment</th>
+        <th>PDF File</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for complaint in complaints %}
+        <tr>
+          <td>{{ complaint.id }}</td>
+          <td>{{ complaint.name }}</td>
+          <td>{{ complaint.email }}</td>
+          <td>{{ complaint.comment }}</td>
+          <td>{{ complaint.pdf_file }}</td>
+          <td>
+            <a href="{% url 'review_feedback' complaint.id %}">Edit</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
